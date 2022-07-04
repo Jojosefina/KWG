@@ -1,12 +1,15 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=32 format=2]
 
-[ext_resource path="res://Art/animales/1 Dog/Idle.png" type="Texture" id=1]
+[ext_resource path="res://Art/Sprite Pack 4/9 - Mr._Circuit_Running (32 x 32).png" type="Texture" id=1]
 [ext_resource path="res://Chaarcteres/Enemigos/Enemigo.gd" type="Script" id=2]
 [ext_resource path="res://Chaarcteres/Player/Salud.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Chaarcteres/Enemigos/AI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Art/Sprite Pack 4/9 - Mr._Circuit_Idle (32 x 32).png" type="Texture" id=5]
+[ext_resource path="res://Art/Sprite Pack 4/9 - Mr._Circuit_Running_Agro (32 x 32).png" type="Texture" id=6]
+[ext_resource path="res://Art/Sprite Pack 4/9 - Mr._Circuit_Hurt (32 x 32).png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 14.5, 10 )
+extents = Vector2( 7.5, 8 )
 
 [sub_resource type="Animation" id=6]
 resource_name = "Idle"
@@ -23,7 +26,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 4 ]
+"values": [ 2 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:frame")
@@ -32,10 +35,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3 ]
+"values": [ 0, 1 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:vframes")
@@ -48,6 +51,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -88,37 +103,215 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 1 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 1 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "agro"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "daño"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "run"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Idle"
 
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "agro"
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "daño"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "daño"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+
 [sub_resource type="AnimationNodeStateMachine" id=9]
 states/Idle/node = SubResource( 8 )
-states/Idle/position = Vector2( 329.667, 75 )
+states/Idle/position = Vector2( 335, 49.6667 )
+states/agro/node = SubResource( 17 )
+states/agro/position = Vector2( 508.928, 155 )
+"states/daño/node" = SubResource( 24 )
+"states/daño/position" = Vector2( 128.029, 48.7778 )
+"states/daño 2/node" = SubResource( 27 )
+"states/daño 2/position" = Vector2( 852.029, 50.2593 )
+states/run/node = SubResource( 13 )
+states/run/position = Vector2( 673.666, 48.9588 )
+transitions = [ "Idle", "run", SubResource( 14 ), "run", "Idle", SubResource( 15 ), "agro", "Idle", SubResource( 18 ), "Idle", "agro", SubResource( 19 ), "agro", "run", SubResource( 20 ), "run", "agro", SubResource( 21 ), "Idle", "daño", SubResource( 25 ), "daño", "Idle", SubResource( 26 ), "run", "daño 2", SubResource( 28 ), "daño 2", "run", SubResource( 29 ) ]
 start_node = "Idle"
+graph_offset = Vector2( -18.9711, 0 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
-[sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 14.5, 10 )
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 2.75, 8 )
 
 [node name="Enemigo" type="KinematicBody2D" groups=["Enemigos"]]
 collision_layer = 3
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( -0.5, 0 )
+position = Vector2( -0.5, 1 )
 shape = SubResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 5, -14 )
+position = Vector2( -0.5, -5 )
 texture = ExtResource( 1 )
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 6 )
 anims/RESET = SubResource( 7 )
+anims/agro = SubResource( 16 )
+"anims/daño" = SubResource( 23 )
+anims/run = SubResource( 12 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 9 )
@@ -128,12 +321,12 @@ parameters/playback = SubResource( 10 )
 [node name="Salud" parent="." instance=ExtResource( 3 )]
 
 [node name="AI" parent="." instance=ExtResource( 4 )]
+position = Vector2( 5, 0 )
 
-[node name="Hurtbox" type="Area2D" parent="."]
-visible = false
+[node name="melee" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2( -0.5, 0 )
-shape = SubResource( 12 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="melee"]
+position = Vector2( 14, 0 )
+shape = SubResource( 22 )
 
-[connection signal="body_entered" from="Hurtbox" to="." method="_on_Hurtbox_body_entered"]
+[connection signal="body_entered" from="melee" to="." method="_on_melee_body_entered"]

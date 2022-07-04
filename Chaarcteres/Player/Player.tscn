@@ -270,6 +270,8 @@ shape = SubResource( 18 )
 disabled = true
 
 [node name="Arma_Lejana" parent="." instance=ExtResource( 1 )]
+visible = false
 
 [node name="Salud" parent="." instance=ExtResource( 5 )]
+visible = false
 health = 200

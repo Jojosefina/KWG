@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://escenas/pepe/Pepe.gd"
 }, {
-"base": "Character",
+"base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://Chaarcteres/Enemigos/Enemigo.gd"
@@ -39,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://escenas/Armas y manejo/Laser.gd"
 }, {
-"base": "Character",
+"base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Chaarcteres/Player/Player.gd"

@@ -8,10 +8,12 @@ onready var visual= $Campo_de_vision
 onready var zona_agro=$zona_de_agro
 onready var timer_agro=$tiempo_agro
 onready var timer_patrullaje=$tiempo_patrullaje
+var facing_rigth=true
+
 
 #estados
 enum State{ PATRULLAR,
-	AGRO
+	AGRO,
 }
 
 var current_state: int= -1 setget set_state
@@ -23,7 +25,6 @@ var actor: KinematicBody2D=null
 var origin: Vector2=Vector2.ZERO
 var lugar_patrullaje: Vector2=Vector2.ZERO
 var lugar_patrullaje_llegado: bool=false
-var velocidad_actor: Vector2=Vector2.ZERO
 
 func _ready():
 	set_state(State.PATRULLAR)
@@ -37,10 +38,18 @@ func _process(delta:float)-> void:
 		State.PATRULLAR:
 			if not lugar_patrullaje_llegado:
 				var actor_angle= actor.global_position.direction_to(lugar_patrullaje).angle()
-				actor.move_and_slide(velocidad_actor)
+				#rotaciones
+				if abs(actor_angle)>PI/2 and facing_rigth: 
+					facing_rigth= not facing_rigth
+					actor.scale.x *= -1
+				if abs(actor_angle)<PI/2 and not facing_rigth: 
+					facing_rigth= not facing_rigth
+					actor.scale.x *= -1
+				#persecucion
+				actor.move_and_slide(actor.velocity)
 				if actor.global_position.distance_to(lugar_patrullaje) < 5:
 					lugar_patrullaje_llegado=true
-					velocidad_actor=Vector2.ZERO
+					actor.velocity=Vector2.ZERO
 					timer_patrullaje.start()
 				
 		State.AGRO:
@@ -49,7 +58,13 @@ func _process(delta:float)-> void:
 				actor.velocity = (player.position-actor.position).normalized() * actor.run_speed
 				#rotación del enemigo cuando llega a cierto a angulo (pendiente)
 				var angulo_jogador=actor.global_position.direction_to(player.global_position).angle()
-				#print(angulo_jogador)
+				#rotaciones
+				if abs(angulo_jogador)>PI/2 and facing_rigth: 
+					facing_rigth= not facing_rigth
+					actor.scale.x *= -1
+				if abs(angulo_jogador)<PI/2 and not facing_rigth: 
+					facing_rigth= not facing_rigth
+					actor.scale.x *= -1
 				if target :
 					player.detection_level(delta)
 			else:
@@ -95,10 +110,10 @@ func _on_tiempo_agro_timeout():
 
 
 func _on_tiempo_patrullaje_timeout():
-	velocidad_actor=Vector2.ZERO
+	actor.velocity=Vector2.ZERO
 	var rango=50
 	var random_x=rand_range(-rango,rango)
 	var random_y=rand_range(-rango,rango)
 	lugar_patrullaje=Vector2(random_x,random_y) + origin
 	lugar_patrullaje_llegado=false
-	velocidad_actor=actor.global_position.direction_to(lugar_patrullaje)*100
+	actor.velocity=actor.global_position.direction_to(lugar_patrullaje)*70
