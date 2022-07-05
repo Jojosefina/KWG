@@ -72,3 +72,23 @@ script = ExtResource( 5 )
 [node name="prototipo_levels" parent="." instance=ExtResource( 7 )]
 
 [node name="pause_menu" parent="." instance=ExtResource( 8 )]
+
+[node name="TextureRect" parent="pause_menu" index="0"]
+visible = false
+
+[node name="Background" parent="pause_menu/TextureRect" index="0"]
+visible = false
+
+[node name="Label" parent="pause_menu/TextureRect" index="1"]
+visible = false
+
+[node name="VBoxContainer" parent="pause_menu/TextureRect" index="2"]
+visible = false
+
+[node name="continue" parent="pause_menu/TextureRect/VBoxContainer" index="0"]
+visible = false
+
+[node name="exit" parent="pause_menu/TextureRect/VBoxContainer" index="1"]
+visible = false
+
+[editable path="pause_menu"]

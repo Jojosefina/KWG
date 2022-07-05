@@ -225,14 +225,6 @@ extents = Vector2( 5.75, 10 )
 collision_layer = 3
 script = ExtResource( 2 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-limit_left = -5000000
-limit_top = -5000000
-limit_right = 5000000
-limit_bottom = 5000000
-editor_draw_limits = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, -1 )
 shape = SubResource( 10 )
@@ -275,3 +267,5 @@ visible = false
 [node name="Salud" parent="." instance=ExtResource( 5 )]
 visible = false
 health = 200
+
+[node name="tp" type="Node" parent="."]

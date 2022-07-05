@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 class_name Player 
 onready var detection_bar=$CanvasLayer/DetectionBar
+onready var tp_scn = preload("res://escenas/Armas y manejo/tp_sprite.tscn")
+onready var tp_node = $tp
 
 #fisicas
 var lin_vel: Vector2 = Vector2.ZERO
@@ -11,6 +13,9 @@ export var RUNACCEL = 15
 export var FRIC = 30
 var knockback_vector=Vector2.ZERO
 var knockback_force = 160
+var tps = 3
+var tp_on = false
+var tp_mark = null
 
 #animaciones
 var facing_right = true
@@ -96,6 +101,24 @@ func _physics_process(delta):
 		#laser.global_rotation_degrees=-90
 		pass
 	velocidad=move_and_slide(velocidad)
+	
+	if Input.is_action_just_pressed("TP"):
+		# cuando esta puesto el tp
+		if tp_on:
+			tp_on = false
+			if is_instance_valid(tp_mark):
+				global_position = tp_mark.global_position
+				tp_mark.queue_free()
+				
+		# aun no se pone el tp
+		elif tps > 0:
+			tp_on = true
+			tp_mark = tp_scn.instance()
+			tps -= 1
+			tp_node.add_child(tp_mark)
+			tp_mark.global_position = global_position
+			
+			
 	#animaciones
 	var attacking = false
 	if Input.is_action_just_pressed("melee"):
@@ -127,4 +150,7 @@ func handle_hit(knockback:Vector2):
 		queue_free()
 	knockback_vector=knockback*knockback_force
 
+func reset_tp():
+	tps = 3
+	
 	
