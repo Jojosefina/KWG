@@ -269,3 +269,6 @@ visible = false
 health = 200
 
 [node name="tp" type="Node" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
+playback_process_mode = 0

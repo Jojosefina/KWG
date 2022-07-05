@@ -69,6 +69,7 @@ func _process(delta:float)-> void:
 					player.detection_level(delta)
 			else:
 				actor.velocity = Vector2.ZERO
+				set_state(State.PATRULLAR)
 			actor._chase(actor.velocity)
 
 
@@ -107,7 +108,7 @@ func _on_zona_de_agro_body_exited(body):
 
 func _on_tiempo_agro_timeout():
 	player=null
-
+	set_state(State.PATRULLAR)
 
 func _on_tiempo_patrullaje_timeout():
 	actor.velocity=Vector2.ZERO

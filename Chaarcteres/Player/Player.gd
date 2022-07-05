@@ -12,7 +12,7 @@ export var RUNSPEED = 100
 export var RUNACCEL = 15
 export var FRIC = 30
 var knockback_vector=Vector2.ZERO
-var knockback_force = 160
+var knockback_force = 320
 var tps = 3
 var tp_on = false
 var tp_mark = null
@@ -34,6 +34,8 @@ onready var melee_area = $melee
 onready var laser= $Arma_Lejana
 export(int) var speed=10
 
+#tween
+onready var tween=$Tween
 
 #funciones
 func _ready():
@@ -78,12 +80,12 @@ func _get_input(delta):
 		lin_vel.y = lerp(lin_vel.y, 0, FRIC * delta)
 
 func _physics_process(delta):
-	
 	_get_input(delta)
-	#knockback
-	knockback_vector=knockback_vector.move_toward(knockback_vector,knockback_force*delta)
-	knockback_vector=lerp(knockback_vector,Vector2.ZERO, delta)
-	move_and_slide(knockback_vector)
+	#knockback 
+	#knockback_vector=knockback_vector.move_toward(knockback_vector,knockback_force*delta)
+	#knockback_vector=lerp(knockback_vector,Vector2.ZERO, delta)
+	#move_and_slide(knockback_vector)
+	
 	# pa donde mira (ROTA EL MONITO DE DERECHA A IZQUIERDA)
 	if Input.is_action_pressed("LEFT") and not Input.is_action_pressed("RIGHT") and facing_right:
 		facing_right = not facing_right
@@ -100,7 +102,7 @@ func _physics_process(delta):
 		#melee_area.global_rotation_degrees=-90
 		#laser.global_rotation_degrees=-90
 		pass
-	velocidad=move_and_slide(velocidad)
+	
 	
 	if Input.is_action_just_pressed("TP"):
 		# cuando esta puesto el tp
@@ -135,6 +137,8 @@ func _on_melee_area_entered(body:Node):
 	if body.has_method('handle_hit'):
 		#agregamos knockback
 		var knockback_vector = global_position.direction_to(body.global_position)
+		if 'ai' in body:
+			body.ai.player=self
 		body.handle_hit(knockback_vector)
 
 
@@ -149,6 +153,8 @@ func handle_hit(knockback:Vector2):
 	if health_stat.health<=0:
 		queue_free()
 	knockback_vector=knockback*knockback_force
+	tween.interpolate_method(self,'move_and_slide',knockback_vector,Vector2.ZERO, 1, Tween.TRANS_QUINT,Tween.EASE_OUT)
+	tween.start()
 
 func reset_tp():
 	tps = 3
