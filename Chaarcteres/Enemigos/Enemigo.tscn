@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Art/Sprite Pack 4/9 - Mr._Circuit_Running (32 x 32).png" type="Texture" id=1]
 [ext_resource path="res://Chaarcteres/Enemigos/Enemigo.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Art/Sprite Pack 4/9 - Mr._Circuit_Idle (32 x 32).png" type="Texture" id=5]
 [ext_resource path="res://Art/Sprite Pack 4/9 - Mr._Circuit_Running_Agro (32 x 32).png" type="Texture" id=6]
 [ext_resource path="res://Art/Sprite Pack 4/9 - Mr._Circuit_Hurt (32 x 32).png" type="Texture" id=7]
+[ext_resource path="res://Chaarcteres/Enemigos/HealthBar.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 7.5, 8 )
@@ -305,7 +306,7 @@ graph_offset = Vector2( -18.9711, 0 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
 [sub_resource type="RectangleShape2D" id=22]
-extents = Vector2( 2.75, 8 )
+extents = Vector2( 1, 8 )
 
 [node name="Enemigo" type="KinematicBody2D" groups=["Enemigos"]]
 collision_layer = 3
@@ -335,17 +336,24 @@ parameters/playback = SubResource( 10 )
 [node name="Salud" parent="." instance=ExtResource( 3 )]
 
 [node name="AI" parent="." instance=ExtResource( 4 )]
+visible = false
 position = Vector2( 5, 0 )
 
 [node name="melee" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="melee"]
-position = Vector2( 14, 0 )
+position = Vector2( 13, 1 )
 shape = SubResource( 22 )
 
 [node name="tween_knockback" type="Tween" parent="."]
 playback_process_mode = 0
 
 [node name="tween_modulate" type="Tween" parent="."]
+
+[node name="HealthBar" parent="." instance=ExtResource( 8 )]
+margin_left = -8.0
+margin_top = 10.0
+margin_right = 7.0
+margin_bottom = 13.0
 
 [connection signal="body_entered" from="melee" to="." method="_on_melee_body_entered"]
