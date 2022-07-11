@@ -91,7 +91,6 @@ func _physics_process(delta):
 	if Input.is_action_pressed("DOWN") and not Input.is_action_pressed("UP") :
 		pass
 	
-	
 	if Input.is_action_just_pressed("TP"):
 		# cuando esta puesto el tp
 		if tp_on:
@@ -99,7 +98,7 @@ func _physics_process(delta):
 			if is_instance_valid(tp_mark):
 				global_position = tp_mark.global_position
 				tp_mark.queue_free()
-				
+
 		# aun no se pone el tp
 		elif tps > 0:
 			tp_on = true

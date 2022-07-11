@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Chaarcteres/Enemigos/Enemigo_Dog/AI_dog.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 100.0
+
+[node name="AI_dog" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Campo_de_vision" type="Area2D" parent="." groups=["Enemigos"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Campo_de_vision"]
+polygon = PoolVector2Array( 38, -10, 100, -22, 105, -4, 100, 7, 37, 4, 0, 0 )
+
+[node name="zona_de_agro" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="zona_de_agro"]
+shape = SubResource( 1 )
+
+[node name="tiempo_agro" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="tiempo_patrullaje" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Campo_de_vision" to="." method="_on_Campo_de_vision_body_entered"]
+[connection signal="body_exited" from="Campo_de_vision" to="." method="_on_Campo_de_vision_body_exited"]
+[connection signal="body_exited" from="zona_de_agro" to="." method="_on_zona_de_agro_body_exited"]
+[connection signal="timeout" from="tiempo_agro" to="." method="_on_tiempo_agro_timeout"]
+[connection signal="timeout" from="tiempo_patrullaje" to="." method="_on_tiempo_patrullaje_timeout"]

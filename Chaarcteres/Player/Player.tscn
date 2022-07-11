@@ -357,7 +357,7 @@ states/hurt/node = SubResource( 21 )
 states/hurt/position = Vector2( 305.246, 340.812 )
 transitions = [ "IdleCat", "Run", SubResource( 6 ), "Run", "IdleCat", SubResource( 7 ), "IdleCat", "basic_attack", SubResource( 14 ), "Run", "basic_attack", SubResource( 15 ), "basic_attack", "IdleCat", SubResource( 16 ), "basic_attack", "Run", SubResource( 17 ), "IdleCat", "hurt", SubResource( 22 ), "basic_attack", "hurt", SubResource( 27 ), "Run", "hurt", SubResource( 30 ), "hurt", "IdleCat", SubResource( 32 ), "hurt", "Run", SubResource( 33 ), "hurt", "basic_attack", SubResource( 34 ), "death", "basic_attack", SubResource( 35 ), "death", "IdleCat", SubResource( 36 ), "death", "Run", SubResource( 37 ), "IdleCat", "death", SubResource( 38 ), "Run", "death", SubResource( 39 ), "basic_attack", "death", SubResource( 40 ) ]
 start_node = "IdleCat"
-graph_offset = Vector2( -246.54, 160.958 )
+graph_offset = Vector2( -246.54, 183.673 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -395,7 +395,6 @@ parameters/playback = SubResource( 1 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DetectionBar" type="ProgressBar" parent="CanvasLayer"]
-visible = false
 margin_right = 116.0
 margin_bottom = 14.0
 

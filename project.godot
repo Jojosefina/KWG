@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "AI",
 "language": "GDScript",
-"path": "res://Chaarcteres/Enemigos/AI.gd"
+"path": "res://Chaarcteres/Enemigos/Enemigo_basico/AI.gd"
 }, {
 "base": "Area2D",
 "class": "Bullet",
@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://Chaarcteres/Enemigos/Enemigo.gd"
+"path": "res://Chaarcteres/Enemigos/Enemigo_basico/Enemigo.gd"
 }, {
 "base": "Node",
 "class": "FiniteStateMachine",
