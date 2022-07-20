@@ -4,6 +4,11 @@ class_name Enemy
 var facing_right = true
 var facing_down= true
 var hurt=false
+
+
+
+
+onready var escena_muerte=preload("res://Chaarcteres/Enemigos/Enemigo_basico/death_node_basic_enemy.tscn")
 onready var PLAYBACK = $AnimationTree.get("parameters/playback")
 onready var tween_knockback=$tween_knockback
 onready var tween_modulate=$tween_modulate
@@ -55,6 +60,11 @@ func handle_hit(knockback:Vector2):
 	health_stat.health-=20
 	barra_salud.value=health_stat.health
 	if health_stat.health <=0:
+		var death_escene=escena_muerte.instance()
+		get_parent().add_child(death_escene)
+		if not ai.facing_rigth:
+			death_escene.mirror()
+		death_escene.set_deferred('global_position',global_position)
 		queue_free()
 	ai.set_state(ai.State.AGRO)
 	#animacion de daño

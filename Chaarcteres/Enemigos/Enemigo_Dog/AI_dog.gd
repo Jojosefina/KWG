@@ -29,11 +29,12 @@ var lugar_patrullaje_llegado: bool=false
 func _ready():
 	set_state(State.PATRULLAR)
 
-
 func initialize(actor):
 	self.actor=actor
 
 func _process(delta:float)-> void:
+	if not is_instance_valid(actor):
+		return 
 	match current_state:
 		State.PATRULLAR:
 			if not lugar_patrullaje_llegado:
@@ -64,15 +65,17 @@ func _process(delta:float)-> void:
 				if abs(angulo_jogador)<PI/2 and not facing_rigth: 
 					facing_rigth= not facing_rigth
 					actor.scale.x *= -1
-				if target :
+				if target:
 					if player.detection_value<20:
+						actor
 						player.detection_level(delta)
-					actor.jump(actor.velocity)
 			else:
 				actor.velocity = Vector2.ZERO
 				set_state(State.PATRULLAR)
+			actor._chase(actor.velocity)
 		State.MIMIR:
 			pass
+
 
 func set_state(new_state:int):
 	if new_state == current_state:
@@ -108,7 +111,6 @@ func _on_zona_de_agro_body_exited(body):
 
 func _on_tiempo_agro_timeout():
 	player=null
-	set_state(State.PATRULLAR)
 
 func _on_tiempo_patrullaje_timeout():
 	actor.velocity=Vector2.ZERO

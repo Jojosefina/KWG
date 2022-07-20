@@ -33,7 +33,9 @@ func _ready():
 func initialize(actor):
 	self.actor=actor
 
-func _process(delta:float)-> void:
+func _physics_process(delta:float)-> void:
+	if not is_instance_valid(actor):
+		return 
 	match current_state:
 		State.PATRULLAR:
 			if not lugar_patrullaje_llegado:
