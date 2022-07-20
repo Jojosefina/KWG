@@ -5,7 +5,7 @@
 [ext_resource path="res://Chaarcteres/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://escenas/Armas y manejo/Laser.tscn" type="PackedScene" id=4]
 [ext_resource path="res://escenas/Armas y manejo/Bullet.tscn" type="PackedScene" id=5]
-[ext_resource path="res://NivelFinal.gd" type="Script" id=6]
+[ext_resource path="res://escenas/levels/NivelFinal.gd" type="Script" id=6]
 [ext_resource path="res://escenas/levels/Nivel4.tscn" type="PackedScene" id=7]
 [ext_resource path="res://escenas/levels/Nivel2.tscn" type="PackedScene" id=8]
 [ext_resource path="res://escenas/levels/Nivel3.tscn" type="PackedScene" id=9]
