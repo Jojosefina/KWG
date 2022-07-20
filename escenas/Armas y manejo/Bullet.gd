@@ -12,14 +12,12 @@ func _ready() -> void:
 	kill_timer.start()
 
 
-func _process(delta:float)-> void:
+func _physics_process(_delta:float)-> void:
 	if direction != Vector2.ZERO:
-		var velocity=direction*speed
-		
 		global_position+= direction*speed
 
-func set_direction(direction: Vector2):
-	self.direction=direction
+func set_direction(value: Vector2):
+	direction=value
 	
 func _on_KillTimer_timeout() -> void:
 	queue_free()

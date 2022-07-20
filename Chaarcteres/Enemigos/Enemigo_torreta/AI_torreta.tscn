@@ -23,14 +23,12 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="zona_agro"]
 shape = SubResource( 2 )
 
-[node name="timer_patrullaje" type="Timer" parent="."]
-
 [node name="timer_agro" type="Timer" parent="."]
 wait_time = 10.0
+one_shot = true
 autostart = true
 
 [connection signal="body_entered" from="campo_de_vision" to="." method="_on_campo_de_vision_body_entered"]
 [connection signal="body_exited" from="campo_de_vision" to="." method="_on_campo_de_vision_body_exited"]
 [connection signal="body_exited" from="zona_agro" to="." method="_on_zona_agro_body_exited"]
-[connection signal="timeout" from="timer_patrullaje" to="." method="_on_timer_patrullaje_timeout"]
 [connection signal="timeout" from="timer_agro" to="." method="_on_timer_agro_timeout"]

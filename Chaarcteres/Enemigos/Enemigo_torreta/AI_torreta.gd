@@ -5,7 +5,6 @@ signal cambio_de_estado(nuevo_estado)
 onready var visual= $campo_de_vision
 onready var zona_agro=$campo_de_vision
 onready var timer_agro=$timer_agro
-onready var timer_patrullaje=$timer_patrullaje
 var facing_rigth=true
 
 #estados
@@ -27,8 +26,8 @@ func _ready():
 	set_state(State.PATRULLAR)
 
 
-func initialize(actor):
-	self.actor=actor
+func initialize(new_actor):
+	self.actor=new_actor
 
 func _process(delta:float)-> void:
 	if not is_instance_valid(actor):
@@ -66,7 +65,6 @@ func set_state(new_state:int):
 		return
 	if new_state== State.PATRULLAR:
 		origin=global_position
-		timer_patrullaje.start()
 		lugar_patrullaje_llegado=false
 	
 	current_state=new_state
@@ -74,6 +72,7 @@ func set_state(new_state:int):
 
 func _on_campo_de_vision_body_entered(body):
 	if body.is_in_group("Player"):
+		actor.emit_signal('detectar')
 		set_state(State.AGRO)
 		player=body
 		target=true

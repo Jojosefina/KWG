@@ -29,10 +29,10 @@ var lugar_patrullaje_llegado: bool=false
 func _ready():
 	set_state(State.PATRULLAR)
 
-func initialize(actor):
-	self.actor=actor
+func initialize(new_actor):
+	self.actor=new_actor
 
-func _process(delta:float)-> void:
+func _physics_process(delta:float)-> void:
 	if not is_instance_valid(actor):
 		return 
 	match current_state:
@@ -67,7 +67,6 @@ func _process(delta:float)-> void:
 					actor.scale.x *= -1
 				if target:
 					if player.detection_value<20:
-						actor
 						player.detection_level(delta)
 			else:
 				actor.velocity = Vector2.ZERO
@@ -91,6 +90,7 @@ func set_state(new_state:int):
 
 func _on_Campo_de_vision_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):
+		actor.emit_signal('detectar')
 		set_state(State.AGRO)
 		player=body
 		target=true

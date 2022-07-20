@@ -30,8 +30,8 @@ func _ready():
 	set_state(State.PATRULLAR)
 
 
-func initialize(actor):
-	self.actor=actor
+func initialize(new_actor):
+	self.actor=new_actor
 
 func _physics_process(delta:float)-> void:
 	if not is_instance_valid(actor):
@@ -91,6 +91,7 @@ func set_state(new_state:int):
 
 func _on_Campo_de_vision_body_entered(body: Node) -> void:
 	if body.is_in_group("Player"):
+		actor.emit_signal('detectar')
 		set_state(State.AGRO)
 		player=body
 		target=true

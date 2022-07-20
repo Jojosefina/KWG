@@ -2,8 +2,6 @@ extends Node2D
 class_name Laser
 
 onready var end_gun=$EndOfGun
-onready var target=$target
-
 
 
 export (PackedScene) var Bullet

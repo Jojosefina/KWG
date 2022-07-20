@@ -11,7 +11,6 @@ var velocidad: Vector2= Vector2.ZERO
 export var RUNSPEED = 100
 export var RUNACCEL = 15
 export var FRIC = 30
-var knockback_vector=Vector2.ZERO
 var knockback_force = 320
 var tps = 3
 var tp_on = false
@@ -58,7 +57,6 @@ func _get_input(delta):
 	var target_velX = (Input.get_action_strength("RIGHT") - Input.get_action_strength("LEFT"))
 	var target_velY = (Input.get_action_strength("DOWN") - Input.get_action_strength("UP"))
 	lin_vel = move_and_slide(lin_vel)
-	#melee_area.knockback_vector=input_vector
 	if PLAYBACK.get_current_node() == "basic_attack":
 		target_velX = 0
 		target_velY = 0
@@ -137,7 +135,7 @@ func handle_hit(knockback:Vector2):
 	print('AUCH', health_stat.health)
 	if health_stat.health<=0:
 		animation_player.play("death")
-	knockback_vector=knockback*knockback_force
+	var knockback_vector=knockback*knockback_force
 	tween.interpolate_method(self,'move_and_slide',knockback_vector,Vector2.ZERO, 1, Tween.TRANS_QUINT,Tween.EASE_OUT)
 	tween.start()
 	

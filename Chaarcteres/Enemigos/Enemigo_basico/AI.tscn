@@ -30,7 +30,6 @@ one_shot = true
 
 [connection signal="body_entered" from="Campo_de_vision" to="." method="_on_Campo_de_vision_body_entered"]
 [connection signal="body_exited" from="Campo_de_vision" to="." method="_on_Campo_de_vision_body_exited"]
-[connection signal="body_entered" from="zona_de_agro" to="." method="_on_zona_de_agro_body_entered"]
 [connection signal="body_exited" from="zona_de_agro" to="." method="_on_zona_de_agro_body_exited"]
 [connection signal="timeout" from="tiempo_agro" to="." method="_on_tiempo_agro_timeout"]
 [connection signal="timeout" from="tiempo_patrullaje" to="." method="_on_tiempo_patrullaje_timeout"]

@@ -310,8 +310,4 @@ playback_process_mode = 0
 position = Vector2( 16, 0 )
 shape = SubResource( 17 )
 
-[node name="timer_jump" type="Timer" parent="."]
-wait_time = 0.05
-
 [connection signal="body_entered" from="melee" to="." method="_on_melee_body_entered"]
-[connection signal="timeout" from="timer_jump" to="." method="_on_timer_jump_timeout"]
