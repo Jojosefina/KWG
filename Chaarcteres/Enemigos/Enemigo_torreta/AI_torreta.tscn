@@ -12,11 +12,13 @@ radius = 400.0
 script = ExtResource( 1 )
 
 [node name="campo_de_vision" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="campo_de_vision"]
 shape = SubResource( 1 )
 
 [node name="zona_agro" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="zona_agro"]
 shape = SubResource( 2 )

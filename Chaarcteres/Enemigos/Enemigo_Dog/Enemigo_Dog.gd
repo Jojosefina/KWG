@@ -4,6 +4,8 @@ extends KinematicBody2D
 var facing_right = true
 var facing_down= true
 var hurt=false
+
+onready var escena_muerte=preload("res://Chaarcteres/Enemigos/Enemigo_Dog/death_node.tscn")
 onready var PLAYBACK = $AnimationTree.get("parameters/playback")
 onready var tween_knockback=$tween_knockback
 onready var tween_modulate=$tween_modulate
@@ -17,7 +19,7 @@ var velocity = Vector2.ZERO
 var path: PoolVector2Array
 var knockback_vector=Vector2.ZERO
 var knockback_force = 320
-var jump_force =1.25
+var jump_force =7.15
 #ai
 onready var ai=$AI_dog
 #persecucion y ataques
@@ -25,11 +27,15 @@ onready var timer_agro= $tiempo_agro
 onready var visual=$AI/Campo_de_vision
 onready var zona_agro=$AI/zona_de_agro
 onready var melee_area=$melee_area
-onready var timer_knockback=$timer_knockback
+onready var timer_jump=$timer_jump
+
 
 #salud
 onready var health_stat= $Salud
 onready var barra_salud=$HealthBar/HealthBar
+#muerte
+onready var death_node=$death_node
+
 
 #variables
 var player #jugador dentro del campo de vision
@@ -45,6 +51,8 @@ func _physics_process(delta):
 	#animaciones
 	if velocity.length() >= 2:
 		PLAYBACK.travel("run")
+		if ai.current_state==ai.State.AGRO:
+			PLAYBACK.travel("Agro")
 	else:
 		PLAYBACK.travel("Idle")
 
@@ -53,6 +61,7 @@ func jump(vector:Vector2):
 	tween_knockback.interpolate_method(self,'move_and_slide',vector,Vector2.ZERO, 1, Tween.TRANS_QUINT,Tween.EASE_OUT)
 	tween_knockback.start()
 	PLAYBACK.travel("jump")
+	timer_jump.start()
 
 
 func _chase(velocity):
@@ -62,6 +71,11 @@ func handle_hit(knockback:Vector2):
 	health_stat.health-=20
 	barra_salud.value=health_stat.health
 	if health_stat.health <=0:
+		var death_escene=escena_muerte.instance()
+		get_parent().add_child(death_escene)
+		if not ai.facing_rigth:
+			death_escene.mirror()
+		death_escene.set_deferred('global_position',global_position)
 		queue_free()
 	ai.set_state(ai.State.AGRO)
 	#animacion de daño
