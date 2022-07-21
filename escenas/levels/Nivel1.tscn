@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Art/retro-texture-pack.png" type="Texture" id=1]
 [ext_resource path="res://Art/Free Industrial Zone Tileset/3 Objects/Locker4.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Chaarcteres/Enemigos/Enemigo_Dog/Enemigo_Dog.tscn" type="PackedScene" id=6]
 [ext_resource path="res://escenas/levels/Nivel.gd" type="Script" id=7]
+[ext_resource path="res://escenas/objetos/invisible_wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Art/Free Industrial Zone Tileset/3 Objects/Ladder3.png" type="Texture" id=14]
 [ext_resource path="res://Art/Free Industrial Zone Tileset/3 Objects/Box8.png" type="Texture" id=15]
 [ext_resource path="res://Art/Cyberpunk_puck.png" type="Texture" id=16]
@@ -410,21 +411,14 @@ format = 1
 tile_data = PoolIntArray( 0, 4, 0, 1, -1610612732, 0, 3, -1610612732, 0, 5, -1610612732, 0, 7, -1610612732, 0, 9, -1610612732, 0, 11, -1610612732, 0, 13, -1610612732, 0, 15, -1610612732, 0, 17, -1610612732, 0, 19, -1610612732, 0, 21, -1610612732, 0, 24, -1073741820, 0, 27, -1610612732, 0, 29, -1610612732, 0, 31, -1610612732, 0, 33, -1610612732, 0, 35, -1610612732, 0, 37, -1610612732, 0, 39, -1610612732, 0, 41, -1610612732, 0, 43, -1610612732, 0, 45, -1610612732, 0, 48, -1610612734, 0, 50, -1610612734, 0, 52, 1610612740, 0, 65536, 1073741828, 0, 65588, 1610612740, 0, 131072, 1073741828, 0, 131124, 1610612740, 0, 196608, 1073741828, 0, 196660, 1610612740, 0, 262144, 1073741828, 0, 262196, 1610612740, 0, 327680, 1073741828, 0, 327732, 1610612740, 0, 524288, 1073741828, 0, 524340, 1610612740, 0, 589824, 1073741828, 0, 589876, 1610612740, 0, 655360, 1073741828, 0, 655412, 1610612740, 0, 720896, 1073741828, 0, 720948, 1610612740, 0, 786432, 1073741828, 0, 786484, 1610612740, 0, 851968, -536870908, 0, 851969, -536870908, 0, 851970, -536870908, 0, 851971, -536870908, 0, 851972, -536870908, 0, 851973, -536870908, 0, 851974, -536870908, 0, 851975, -536870908, 0, 851976, -536870908, 0, 851977, -536870908, 0, 851978, -536870908, 0, 851979, -536870908, 0, 851980, -536870908, 0, 851981, -536870908, 0, 851982, -536870908, 0, 851983, -536870908, 0, 851984, -536870908, 0, 851985, -536870908, 0, 851986, -536870908, 0, 851987, -536870908, 0, 851988, -536870908, 0, 851989, -536870908, 0, 851990, -536870908, 0, 851991, -1073741820, 0, 851992, -1073741820, 0, 851993, -1073741820, 0, 851994, -1073741820, 0, 851995, -1073741820, 0, 851998, -1073741820, 0, 852000, -1073741820, 0, 852002, -1073741820, 0, 852003, -1073741820, 0, 852004, -1073741820, 0, 852006, -1073741820, 0, 852007, -1073741820, 0, 852009, -1073741820, 0, 852011, -1073741820, 0, 852014, -1073741820, 0, 852015, -1073741820, 0, 852017, -1073741820, 0, 852018, -1073741820, 0 )
 
 [node name="Enemigos" type="Node2D" parent="."]
-
-[node name="Enemigo_Dog" parent="Enemigos" instance=ExtResource( 6 )]
-position = Vector2( 92, 63 )
+z_index = 4
+z_as_relative = false
 
 [node name="Enemigo_Dog2" parent="Enemigos" instance=ExtResource( 6 )]
 position = Vector2( 106, 223 )
 
 [node name="Enemigo_Dog3" parent="Enemigos" instance=ExtResource( 6 )]
 position = Vector2( 403, 42 )
-
-[node name="Enemigo_Dog4" parent="Enemigos" instance=ExtResource( 6 )]
-position = Vector2( 393, 231 )
-
-[node name="Enemigo_Dog5" parent="Enemigos" instance=ExtResource( 6 )]
-position = Vector2( 277, 137 )
 
 [node name="Puertas" type="Node2D" parent="."]
 
@@ -453,3 +447,9 @@ position = Vector2( 235, 138 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 21 )
+
+[node name="center" type="Position2D" parent="."]
+position = Vector2( 244, 135 )
+
+[node name="Node2D" parent="." instance=ExtResource( 8 )]
+position = Vector2( -1, 147 )

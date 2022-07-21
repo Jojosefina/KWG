@@ -6,7 +6,7 @@ onready var credit_menu = $credits_menu
 
 
 func _on_Start_pressed():
-	get_tree().change_scene("res://Game.tscn")
+	get_tree().change_scene("res://escenas/levels/NivelFinal.tscn")
 
 
 

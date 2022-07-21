@@ -4,6 +4,7 @@ var detected = false
 onready var enemies = $Enemigos 
 onready var puertas = $Puertas
 onready var area =$Area2D
+onready var centro = $center
 
 func _ready(): 
 	area.connect("body_entered", self, "on_body_enter")
@@ -16,7 +17,9 @@ func on_body_enter(body):
 				enemy.connect('death',self,'on_enemy_death')
 			if not enemy.is_connected('detectar',self,'on_player_detected'):
 				enemy.connect('detectar',self,'on_player_detected',[],CONNECT_ONESHOT)
+		body.reset_tp()
 		#Configurar la cámara
+		get_parent().camera.global_position = centro.global_position
 
 
 func open_door():

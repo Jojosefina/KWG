@@ -4,6 +4,7 @@ class_name Player
 onready var detection_bar=$CanvasLayer/DetectionBar
 onready var tp_scn = preload("res://escenas/Armas y manejo/tp_sprite.tscn")
 onready var tp_node = $tp
+signal defeat
 
 #fisicas
 var lin_vel: Vector2 = Vector2.ZERO
@@ -50,6 +51,9 @@ func _process(_delta):
 func detection_level(delta):
 	detection_value+=40*delta
 	detection_bar.value=detection_value
+	if detection_value > MAX_LEVEL_DETECTTION:
+		dead()
+		
 
 #movimiento
 
@@ -132,12 +136,18 @@ func _unhandled_input(event: InputEvent)-> void:
 func handle_hit(knockback:Vector2):
 	animation_player.play("hurt")
 	health_stat.health-=20
-	print('AUCH', health_stat.health)
+	#print('AUCH', health_stat.health)
 	if health_stat.health<=0:
-		animation_player.play("death")
+		PLAYBACK.travel("death")
+		set_physics_process(false)
+		return
 	var knockback_vector=knockback*knockback_force
 	tween.interpolate_method(self,'move_and_slide',knockback_vector,Vector2.ZERO, 1, Tween.TRANS_QUINT,Tween.EASE_OUT)
 	tween.start()
+	
+func dead():
+	emit_signal("defeat")
+	
 	
 func reset_tp():
 	tps = 3

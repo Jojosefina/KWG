@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://escenas/levels/BulletManager.gd" type="Script" id=1]
 [ext_resource path="res://escenas/levels/Nivel1.tscn" type="PackedScene" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://escenas/levels/Nivel4.tscn" type="PackedScene" id=7]
 [ext_resource path="res://escenas/levels/Nivel2.tscn" type="PackedScene" id=8]
 [ext_resource path="res://escenas/levels/Nivel3.tscn" type="PackedScene" id=9]
+[ext_resource path="res://escenas/Menu/victory_popup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://escenas/Menu/defeat_popup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://escenas/Menu/pause_menu.tscn" type="PackedScene" id=12]
+[ext_resource path="res://escenas/objetos/door_area.tscn" type="PackedScene" id=13]
+[ext_resource path="res://escenas/objetos/invisible_wall.tscn" type="PackedScene" id=14]
 
 [node name="NivelFinal" type="Node2D"]
 script = ExtResource( 6 )
@@ -19,13 +24,21 @@ script = ExtResource( 6 )
 position = Vector2( 497, 0 )
 
 [node name="Nivel3 mundo" parent="." instance=ExtResource( 9 )]
-position = Vector2( 497, -272 )
+position = Vector2( 495, -292 )
 
 [node name="Nivel4 mundo" parent="." instance=ExtResource( 7 )]
-position = Vector2( 999, -272 )
+position = Vector2( 997, -292 )
 
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource( 1 )
+
+[node name="door_area" parent="." instance=ExtResource( 13 )]
+position = Vector2( 1495, -111 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 31, 37 )
+current = true
+smoothing_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 31, 37 )
@@ -35,3 +48,18 @@ collision_mask = 9
 [node name="Laser" parent="Player" instance=ExtResource( 4 )]
 
 [node name="Bullet" parent="Player" instance=ExtResource( 5 )]
+
+[node name="victory_popup" parent="." instance=ExtResource( 10 )]
+
+[node name="pause_menu" parent="." instance=ExtResource( 12 )]
+
+[node name="defeat_popup" parent="." instance=ExtResource( 11 )]
+
+[node name="Node2D" parent="." instance=ExtResource( 14 )]
+position = Vector2( 713, -12 )
+
+[node name="Node2D2" parent="." instance=ExtResource( 14 )]
+position = Vector2( 756, -12 )
+
+[node name="Node2D3" parent="." instance=ExtResource( 14 )]
+position = Vector2( 985, -199 )
