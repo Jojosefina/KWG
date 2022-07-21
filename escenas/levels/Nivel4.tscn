@@ -87,6 +87,32 @@
 4/shapes = [  ]
 4/z_index = 0
 
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 10, 90, 0.5, 90, 0.5, 0.0625, 10, 0.0625 )
+
+[sub_resource type="TileSet" id=6]
+0/name = "Dungeon_Tileset_at.png 0"
+0/texture = ExtResource( 12 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 322, 356, 10, 90 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 5 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 5 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 30, 26.0862, 1.86111, 26.0862, 1.86111, 0, 30, 0 )
 
@@ -136,32 +162,6 @@ points = PoolVector2Array( 9, 137.438, 0.5, 137.438, 0.5, 0.770874, 9, 0.770874 
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
-
-[sub_resource type="ConvexPolygonShape2D" id=5]
-points = PoolVector2Array( 10, 90, 0.5, 90, 0.5, 0.0625, 10, 0.0625 )
-
-[sub_resource type="TileSet" id=6]
-0/name = "Dungeon_Tileset_at.png 0"
-0/texture = ExtResource( 12 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 322, 356, 10, 90 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 5 )
-0/shape_one_way = false
-0/shape_one_way_margin = 1.0
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 5 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-0/z_index = 0
 
 [sub_resource type="ConvexPolygonShape2D" id=18]
 points = PoolVector2Array( 32, 7, 1.5834, 7, 1.5834, 0.807556, 32, 0.807556 )
@@ -385,11 +385,18 @@ cell_size = Vector2( 48, 45 )
 format = 1
 tile_data = PoolIntArray( 0, 4, 0, 1, 4, 0, 2, 4, 0, 3, 4, 0, 4, 4, 0, 5, 4, 0, 6, 4, 0, 7, 4, 0, 8, 4, 0, 9, 4, 0, 65536, 4, 0, 65537, 4, 0, 65538, 4, 0, 65539, 4, 0, 65540, 4, 0, 65541, 4, 0, 65542, 4, 0, 65543, 4, 0, 65544, 4, 0, 65545, 4, 0, 131072, 4, 0, 131073, 4, 0, 131074, 4, 0, 131075, 4, 0, 131076, 4, 0, 131077, 4, 0, 131078, 4, 0, 131079, 4, 0, 131080, 4, 0, 131081, 4, 0, 196608, 4, 0, 196609, 4, 0, 196610, 4, 0, 196611, 4, 0, 196612, 4, 0, 196613, 4, 0, 196614, 4, 0, 196615, 4, 0, 196616, 4, 0, 196617, 4, 0, 262144, 4, 0, 262145, 4, 0, 262146, 4, 0, 262147, 4, 0, 262148, 4, 0, 262149, 4, 0, 262150, 4, 0, 262151, 4, 0, 262152, 4, 0, 262153, 4, 0, 327680, 4, 0, 327681, 4, 0, 327682, 4, 0, 327683, 4, 0, 327684, 4, 0, 327685, 4, 0, 327686, 4, 0, 327687, 4, 0, 327688, 4, 0, 327689, 4, 0 )
 
+[node name="Layer3" type="TileMap" parent="."]
+position = Vector2( 0, 2 )
+tile_set = SubResource( 6 )
+cell_size = Vector2( 10, 30 )
+format = 1
+tile_data = PoolIntArray( 11, 536870912, 0, 196615, -536870912, 0, 196640, 1073741824, 0, 327680, -2147483648, 0, 393229, 536870912, 0, 393241, -536870912, 0, 393249, -536870912, 0, 393250, -536870912, 0 )
+
 [node name="Layer2" type="TileMap" parent="."]
 tile_set = SubResource( 4 )
-cell_size = Vector2( 29, 64 )
+cell_size = Vector2( 12, 12 )
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 1, 0, 196608, 1, 0, 196624, 1, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 262158, 0, 0, 262159, 0, 0, 262160, 1, 0 )
+tile_data = PoolIntArray( 65534, -2147483648, 0, 65535, 536870912, 0, 1, 536870912, 0, 3, 536870912, 0, 5, 536870912, 0, 7, 536870912, 0, 9, 536870912, 0, 10, 536870912, 0, 12, 536870912, 0, 14, 536870912, 0, 16, 536870912, 0, 18, 536870912, 0, 20, 536870912, 0, 22, 536870912, 0, 24, 536870912, 0, 25, 536870912, 0, 26, 536870912, 0, 28, 536870912, 0, 29, 536870912, 0, 31, 536870912, 0, 33, 536870912, 0, 35, 536870912, 0, 37, 536870912, 0, 39, 536870912, 0, 131070, -2147483648, 0, 131111, -536870912, 0, 262142, -2147483648, 0, 196624, 1, 0, 262160, 1, 0, 262183, -536870912, 0, 393214, -2147483648, 0, 393255, -536870912, 0, 524286, -2147483648, 0, 524327, -536870912, 0, 655399, -536870912, 0, 851966, -2147483648, 0, 917502, -2147483648, 0, 917543, -536870912, 0, 1048574, -2147483648, 0, 1048615, -536870912, 0, 1179646, -2147483648, 0, 1179687, -536870912, 0, 1310718, -2147483648, 0, 1310759, -536870912, 0, 1441791, 1073741824, 0, 1376257, 1073741824, 0, 1376259, 1073741824, 0, 1376261, 1073741824, 0, 1376263, 1073741824, 0, 1376265, 1073741824, 0, 1376267, 1073741824, 0, 1376269, 1073741824, 0, 1376271, 1073741824, 0, 1376273, 1073741824, 0, 1376275, 1073741824, 0, 1376277, 1073741824, 0, 1376279, 1073741824, 0, 1376281, 1073741824, 0, 1376283, 1073741824, 0, 1376285, 1073741824, 0, 1376287, 1073741824, 0, 1376289, 1073741824, 0, 1376291, 1073741824, 0, 1376293, 1073741824, 0, 1376295, -536870912, 0 )
 
 [node name="Enemigos" type="Node2D" parent="."]
 z_index = 4
@@ -402,21 +409,16 @@ position = Vector2( 50, 200 )
 position = Vector2( 225, 162 )
 
 [node name="Enemigo_Torreta2" parent="Enemigos" instance=ExtResource( 10 )]
-position = Vector2( 431, 50 )
+position = Vector2( 388, 122 )
 
 [node name="Enemigo2" parent="Enemigos" instance=ExtResource( 7 )]
 position = Vector2( 182, 68 )
 
-[node name="Layer3" type="TileMap" parent="."]
-tile_set = SubResource( 6 )
-format = 1
-tile_data = PoolIntArray( 0, 0, 0 )
-
 [node name="Layer4" type="TileMap" parent="."]
 tile_set = SubResource( 11 )
-cell_size = Vector2( 65, 76 )
+cell_size = Vector2( 12, 12 )
 format = 1
-tile_data = PoolIntArray( 1, 0, 0, 2, 1, 0, 3, 2, 0, 4, 2, 0, 5, 1, 0, 6, 0, 0, 65542, 5, 0, 131072, 5, 0, 196609, 3, 0, 196610, 3, 0, 196611, 3, 0, 196612, 3, 0, 196613, 3, 0, 196614, 3, 0 )
+tile_data = PoolIntArray( 1, 0, 0, 4, -536870911, 0, 5, -536870911, 0, 6, 0, 0, 11, -536870911, 0, 19, -536870911, 0, 27, -536870911, 0, 35, -536870911, 0, 131072, 5, 0 )
 
 [node name="Layer7" type="TileMap" parent="."]
 position = Vector2( 0, 14 )
@@ -426,7 +428,7 @@ format = 1
 tile_data = PoolIntArray( 131072, 5, 0 )
 
 [node name="Layer6" type="TileMap" parent="."]
-position = Vector2( 0, 18 )
+position = Vector2( 0, 22 )
 tile_set = SubResource( 11 )
 cell_size = Vector2( 65, 76 )
 format = 1
@@ -436,7 +438,7 @@ tile_data = PoolIntArray( 65536, 5, 0 )
 tile_set = SubResource( 16 )
 cell_size = Vector2( 45, 64 )
 format = 1
-tile_data = PoolIntArray( 0, -1610612736, 0, 196608, -1610612736, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 1610612736, 0, 262153, 1610612736, 0, 262154, 1610612736, 0 )
+tile_data = PoolIntArray( 196608, -1610612736, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 1610612736, 0, 262153, 1610612736, 0, 262154, 1610612736, 0 )
 
 [node name="Puertas" type="Node2D" parent="."]
 
