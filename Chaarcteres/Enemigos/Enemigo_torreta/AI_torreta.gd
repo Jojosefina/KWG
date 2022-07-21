@@ -37,22 +37,27 @@ func _process(delta:float)-> void:
 				return 
 		State.AGRO:
 			if is_instance_valid(player):
-				#rotación del enemigo cuando llega a cierto a angulo 
-				var angulo_jogador=actor.global_position.direction_to(player.global_position).angle()
-				#rotaciones de sprite
-				if abs(angulo_jogador)>PI/2 and facing_rigth: 
-					facing_rigth= not facing_rigth
-					actor.sprite.scale.x *= -1
+				var space_state=get_world_2d().direct_space_state
+				var result=space_state.intersect_ray(global_position,player.global_position,[actor])
+				if result.collider is Player:
+					#rotación del enemigo cuando llega a cierto a angulo 
+					var angulo_jogador=actor.global_position.direction_to(player.global_position).angle()
+					#rotaciones de sprite
+					if abs(angulo_jogador)>PI/2 and facing_rigth: 
+						facing_rigth= not facing_rigth
+						actor.sprite.scale.x *= -1
+						
+					if abs(angulo_jogador)<PI/2 and not facing_rigth: 
+						facing_rigth= not facing_rigth
+						actor.sprite.scale.x *= -1
 					
-				if abs(angulo_jogador)<PI/2 and not facing_rigth: 
-					facing_rigth= not facing_rigth
-					actor.sprite.scale.x *= -1
-				
-				#rotacion del arma
-				actor.laser.rotation = lerp_angle(actor.laser.rotation, angulo_jogador, 0.1)
-				actor.laser.shoot()
-				if target:
-					player.detection_level(delta)
+					#rotacion del arma
+					actor.laser.rotation = lerp_angle(actor.laser.rotation, angulo_jogador, 0.1)
+					actor.laser.shoot()
+					if target:
+						player.detection_level(delta)
+				else:
+					set_state(State.PATRULLAR)
 				
 			else:
 				actor.velocity = Vector2.ZERO

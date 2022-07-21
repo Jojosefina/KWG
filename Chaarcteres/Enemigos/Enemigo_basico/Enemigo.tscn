@@ -336,7 +336,6 @@ parameters/playback = SubResource( 10 )
 [node name="Salud" parent="." instance=ExtResource( 3 )]
 
 [node name="AI" parent="." instance=ExtResource( 4 )]
-visible = false
 position = Vector2( 5, 0 )
 
 [node name="melee" type="Area2D" parent="."]

@@ -27,3 +27,5 @@ func _on_Bullet_body_entered(body):
 	if body.has_method('handle_hit') and body is KinematicBody2D:
 		body.handle_hit(direction.normalized())
 		queue_free()
+	else:
+		queue_free()

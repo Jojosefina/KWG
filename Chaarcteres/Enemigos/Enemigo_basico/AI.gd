@@ -55,25 +55,29 @@ func _physics_process(delta:float)-> void:
 					timer_patrullaje.start()
 				
 		State.AGRO:
-			if is_instance_valid(player):
-				#persecución
-				actor.velocity = (player.position-actor.position).normalized() * actor.run_speed
-				#rotación del enemigo cuando llega a cierto a angulo (pendiente)
-				var angulo_jogador=actor.global_position.direction_to(player.global_position).angle()
-				#rotaciones
-				if abs(angulo_jogador)>PI/2 and facing_rigth: 
-					facing_rigth= not facing_rigth
-					actor.scale.x *= -1
-				if abs(angulo_jogador)<PI/2 and not facing_rigth: 
-					facing_rigth= not facing_rigth
-					actor.scale.x *= -1
-				if target :
-					player.detection_level(delta)
+			if player is Player:
+				var space_state=get_world_2d().direct_space_state
+				var result=space_state.intersect_ray(actor.global_position,player.global_position,[actor])
+				if result.collider is Player:
+					#persecución
+					actor.velocity = (player.global_position-actor.global_position).normalized() * actor.run_speed
+					#rotación del enemigo cuando llega a cierto a angulo (pendiente)
+					var angulo_jogador=actor.global_position.direction_to(player.global_position).angle()
+					#rotaciones
+					if abs(angulo_jogador)>PI/2 and facing_rigth: 
+						facing_rigth= not facing_rigth
+						actor.scale.x *= -1
+					if abs(angulo_jogador)<PI/2 and not facing_rigth: 
+						facing_rigth= not facing_rigth
+						actor.scale.x *= -1
+					if target:
+						player.detection_level(delta)
+				else:
+						set_state(State.PATRULLAR)
 			else:
 				actor.velocity = Vector2.ZERO
 				set_state(State.PATRULLAR)
 			actor._chase(actor.velocity)
-
 
 	
 func set_state(new_state:int):
